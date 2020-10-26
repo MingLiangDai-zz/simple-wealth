@@ -20,7 +20,10 @@ function App() {
           <Route exact path="/sign-in">
             <SignInSignUp signUp={false} />
           </Route>
-          <Route exact path="/dashboard">
+          <Route path="/dashboard">
+            <Board userName="Ming Liang Dai" />
+          </Route>
+          <Route exact path="/dashboard/buy">
             <Board userName="Ming Liang Dai" />
           </Route>
         </Switch>

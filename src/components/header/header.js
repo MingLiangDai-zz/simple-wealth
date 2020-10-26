@@ -9,7 +9,7 @@ const linkStyle = {
 const Header = ({ title }) => {
   return (
     <div style={{ position: "sticky" }} className="mb-3">
-      <Navbar bg="light" expand="lg" bg="info" variant="dark">
+      <Navbar expand="lg" bg="info" variant="dark">
         <Link to="/">
           <Navbar.Brand>{title}</Navbar.Brand>
         </Link>
@@ -24,13 +24,13 @@ const Header = ({ title }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Link to="/">
-              <Nav.Link as="a">Home</Nav.Link>
+              <Nav.Link as="div">Home</Nav.Link>
             </Link>
             <Link to="/sign-in" style={linkStyle}>
-              <Nav.Link as="a">Sign In</Nav.Link>
+              <Nav.Link as="div">Sign In</Nav.Link>
             </Link>
             <Link to="/dashboard" style={linkStyle}>
-              <Nav.Link as="a">Dashboard</Nav.Link>
+              <Nav.Link as="div">Dashboard</Nav.Link>
             </Link>
           </Nav>
         </Navbar.Collapse>
