@@ -9,26 +9,14 @@ class DataChart extends Component {
   }
 
   componentDidMount() {
+    const { dataArr, labelsArr } = this.props;
     this.myChart = new Chart(this.canvasRef.current.getContext("2d"), {
       type: "line",
       data: {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
+        labels: labelsArr,
         datasets: [
           {
-            data: [1, 4, 3, 5, 2, 3, 10, 7, 8, 9, 19, 25],
+            data: dataArr,
             pointBackgroundColor: "rgba(23, 162, 184, 0.5)",
             backgroundColor: "rgba(23, 162, 184, 0.5)",
           },
@@ -63,6 +51,17 @@ class DataChart extends Component {
       },
     });
   }
+
+  componentDidUpdate() {
+    this.updateChart();
+  }
+
+  updateChart = () => {
+    const { labelsArr, dataArr } = this.props;
+    this.myChart.data.labels = labelsArr;
+    this.myChart.data.datasets[0].data = dataArr;
+    this.myChart.update();
+  };
   render() {
     return <canvas ref={this.canvasRef} />;
   }

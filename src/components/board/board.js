@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button, Card, Nav } from "react-bootstrap";
-import { Link, Switch, Route } from "react-router-dom";
+import { Container, Row, Col, Card, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
+import BalancesTab from "../balances-tab/balances-tab";
 import TradeTab from "../trade-tab/trade-tab";
 import "./board.css";
 
@@ -37,32 +38,31 @@ const Board = ({ userName }) => {
         <Nav variant="tabs" className="mb-2">
           {Object.keys(tabs).map((tab) => {
             return (
-              <Link to={"/dashboard/" + tab}>
-                <Nav.Link
-                  className="yo"
-                  as="div"
-                  active={tabs[tab]}
-                  onClick={() => {
-                    handleTabs(tab);
-                  }}
-                >
-                  <h5 className="text-info">
-                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                  </h5>
-                </Nav.Link>
-              </Link>
+              <Nav.Link
+                style={{ cursor: "pointer" }}
+                as="div"
+                active={tabs[tab]}
+                onClick={() => {
+                  handleTabs(tab);
+                }}
+              >
+                <h5 className="text-info">
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </h5>
+              </Nav.Link>
             );
           })}
         </Nav>
-
-        <Switch>
-          <Route exact path="/dashboard/balances"></Route>
-          <Route exact path="/dashboard/positions"></Route>
-          <Route exact path="/dashboard/orders"></Route>
-          <Route exact path="/dashboard/trade">
-            <TradeTab />
-          </Route>
-        </Switch>
+        {tabs["balances"] ? (
+          <BalancesTab
+            handleTradeClick={() => {
+              handleTabs("trade");
+            }}
+          />
+        ) : null}
+        {tabs["positions"] ? <BalancesTab /> : null}
+        {tabs["orders"] ? <BalancesTab /> : null}
+        {tabs["trade"] ? <TradeTab /> : null}
       </Card>
     </Container>
   );

@@ -6,7 +6,8 @@
   "dependencies": {
     "alphavantage": "^2.2.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "yahoo-finance": "^0.3.6"
   },
   "scripts": {
     "serve": "nodemon server.js"
