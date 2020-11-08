@@ -1,17 +1,23 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-const search = ({ receivedIntraday, receivedWeek }) => {
+const search = ({ receivedIntraday, receivedWeek, receivedQuote }) => {
   const search = (ticker) => {
-    fetch("http://localhost:9000/stocks/intraday/" + ticker)
+    // fetch("http://localhost:9000/stocks/intraday/" + ticker)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     receivedIntraday(data["Time Series (5min)"]);
+    //   })
+    //   .catch((err) => console.error(err));
+    // fetch("http://localhost:9000/stocks/historical/" + ticker)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     receivedWeek(data);
+    //   })
+    //   .catch((err) => console.error(err));
+    fetch("http://localhost:9000/stocks/quote/" + ticker)
       .then((res) => res.json())
       .then((data) => {
-        receivedIntraday(data["Time Series (5min)"]);
-      })
-      .catch((err) => console.error(err));
-    fetch("http://localhost:9000/stocks/historical/" + ticker)
-      .then((res) => res.json())
-      .then((data) => {
-        receivedWeek(data);
+        receivedQuote(data);
       })
       .catch((err) => console.error(err));
   };

@@ -9,7 +9,12 @@ class DataChart extends Component {
   }
 
   componentDidMount() {
-    const { dataArr, labelsArr } = this.props;
+    let { dataArr, labelsArr } = this.props;
+    dataArr = dataArr === undefined || dataArr.length === 0 ? [0] : dataArr;
+    labelsArr =
+      labelsArr === undefined || labelsArr.length === 0
+        ? ["Chart Unavailable"]
+        : labelsArr;
     this.myChart = new Chart(this.canvasRef.current.getContext("2d"), {
       type: "line",
       data: {

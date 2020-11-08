@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 var yahooFinance = require("yahoo-finance");
+const finnhub = require("finnhub");
+const api_key = finnhub.ApiClient.instance.authentications["api_key"];
+api_key.apiKey = "sandbox_bujldkn48v6rjdbe1kig";
+const finnhubClient = new finnhub.DefaultApi();
 
 const app = express();
 const port = 9000;
@@ -14,6 +18,14 @@ const port = 9000;
 const alpha = require("alphavantage")({ key: "YXDR223D7MRRGVK1" });
 
 app.use(cors());
+
+app.get("/stocks/quote/:ticker", async (req, res) => {
+  const ticker = req.params.ticker;
+  finnhubClient.quote(ticker, (error, data, response) => {
+    data["ticker"] = ticker;
+    res.send(data);
+  });
+});
 
 app.get("/stocks/intraday/:ticker", async (req, res) => {
   const ticker = req.params.ticker;

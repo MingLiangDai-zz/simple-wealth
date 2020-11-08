@@ -15,6 +15,14 @@ const TradeTab = () => {
   const [dataArrWeek, setDataArrWeek] = useState([]);
   const [labelsArrWeek, setLabelsArrWeek] = useState([]);
   const [view, setView] = useState(["day"]);
+  const [currentData, setCurrentData] = useState({
+    o: null,
+    h: null,
+    l: null,
+    c: null,
+    pc: null,
+    ticker: "",
+  });
 
   const dataToChart = (data) => {
     const xArr = [];
@@ -34,6 +42,10 @@ const TradeTab = () => {
     });
     setDataArrWeek(yArr);
     setLabelsArrWeek(xArr);
+  };
+
+  const displayCurrentData = (data) => {
+    setCurrentData(data);
   };
 
   const setViewType = (typeStr) => {
@@ -57,9 +69,46 @@ const TradeTab = () => {
           <Search
             receivedIntraday={dataToChart}
             receivedWeek={dataToWeekChart}
+            receivedQuote={displayCurrentData}
           />
         </Col>
       </Row>
+      <div className="my-3 py-2 border border-secondary border-left-0 border-right-0">
+        <Row>
+          <Col>
+            <h4>{currentData.ticker.toUpperCase()}</h4>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={6} md={3}>
+            <h6>
+              Open: <span className="text-muted bold">{currentData.o}</span>
+            </h6>
+          </Col>
+          <Col sm={6} md={3}>
+            <h6>
+              High: <span className="text-muted bold"> {currentData.h}</span>
+            </h6>
+          </Col>
+          <Col sm={6} md={3}>
+            <h6>
+              Low: <span className="text-muted bold"> {currentData.l}</span>
+            </h6>
+          </Col>
+          <Col sm={6} md={3}>
+            <h6>
+              Close: <span className="text-muted bold"> {currentData.c}</span>
+            </h6>
+          </Col>
+          {/* <Col sm={6} md={3}>
+          <h6>
+            Previous Close:
+            <span className="text-muted bold"> {currentData.pc}</span>
+          </h6>
+        </Col> */}
+        </Row>
+      </div>
+
       <Row>
         <Col>
           <Row>
