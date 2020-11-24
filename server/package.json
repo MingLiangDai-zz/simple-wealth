@@ -8,6 +8,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "finnhub": "^1.2.1",
+    "moment-business-days": "^1.2.0",
     "yahoo-finance": "^0.3.6"
   },
   "scripts": {

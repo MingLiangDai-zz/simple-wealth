@@ -25,11 +25,13 @@ const TradeTab = () => {
   });
 
   const dataToChart = (data) => {
+    console.log(data);
     const xArr = [];
-    const yArr = Object.keys(data).map((key) => {
-      xArr.push(key.slice(11));
-      return data[key].close;
-    });
+    const yArr = data.o;
+    // const yArr = Object.keys(data).map((key) => {
+    //   xArr.push(key.slice(11));
+    //   return data[key].close;
+    // });
     setDataArr(yArr);
     setLabelsArr(xArr);
   };
@@ -82,6 +84,11 @@ const TradeTab = () => {
         <Row>
           <Col sm={6} md={3}>
             <h6>
+              Current: <span className="text-muted bold"> {currentData.c}</span>
+            </h6>
+          </Col>
+          <Col sm={6} md={3}>
+            <h6>
               Open: <span className="text-muted bold">{currentData.o}</span>
             </h6>
           </Col>
@@ -93,11 +100,6 @@ const TradeTab = () => {
           <Col sm={6} md={3}>
             <h6>
               Low: <span className="text-muted bold"> {currentData.l}</span>
-            </h6>
-          </Col>
-          <Col sm={6} md={3}>
-            <h6>
-              Close: <span className="text-muted bold"> {currentData.c}</span>
             </h6>
           </Col>
           {/* <Col sm={6} md={3}>
