@@ -5,6 +5,7 @@ import Home from "./components/home/home";
 import Header from "./components/header/header";
 import Board from "./components/board/board";
 import SignInSignUp from "./components/sign-in-sign-up/sign-in-sign-up";
+import NotAvailable from "./components/not_available/not_available";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/dashboard/buy">
             <Board userName="Ming Liang Dai" />
+          </Route>
+          <Route exact path="/not-available">
+            <NotAvailable />
           </Route>
         </Switch>
       </div>

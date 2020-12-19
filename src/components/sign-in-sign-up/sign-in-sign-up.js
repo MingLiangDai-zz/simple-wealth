@@ -2,6 +2,11 @@ import React from "react";
 import { Container, Card, Form, Col, Row, Button } from "react-bootstrap";
 
 const SignInSignUp = ({ signUp }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    window.location.href = "/not-available";
+  };
+
   return (
     <div>
       <Container className="d-flex justify-content-center">
@@ -12,7 +17,7 @@ const SignInSignUp = ({ signUp }) => {
             </Card.Title>
           </Card.Header>
           <Card.Body>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Form.Group as={Row} controlId="formHorizontalEmail">
                 <Form.Label column lg={2}>
                   Email
@@ -42,7 +47,9 @@ const SignInSignUp = ({ signUp }) => {
                   </Col>
                 </Form.Group>
               ) : null}
-              <Button variant="info">{signUp ? "Sign Up" : "Sign In"}</Button>
+              <Button variant="info" type="submit">
+                {signUp ? "Sign Up" : "Sign In"}
+              </Button>
             </Form>
           </Card.Body>
         </Card>
